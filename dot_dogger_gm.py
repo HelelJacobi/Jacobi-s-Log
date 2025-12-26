@@ -135,7 +135,7 @@ def evolve(population):
 # -------------------------------
 # Pyglet Setup
 # -------------------------------
-window = pyglet.window.Window(WINDOW_WIDTH, WINDOW_HEIGHT, "Evolution AI Rain")
+window = pyglet.window.Window(WINDOW_WIDTH, WINDOW_HEIGHT, "Evolution/ AI/ InvestmentBuzzword")
 batch = pyglet.graphics.Batch()
 agent_sprites = []
 obstacle_sprites = []
