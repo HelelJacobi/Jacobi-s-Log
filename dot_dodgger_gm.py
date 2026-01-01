@@ -222,12 +222,12 @@ def update(dt):
     alive_label.text = f"Alive: {alive_count}"
 
     # Handle generation end
-    if alive_count == 0 or wave == 100:
+    if alive_count == 0 or wave == 1000:
         print("# -------------------------------")
         print(f"Generation {current_generation} evolved. Highest cycle survived: {wave}")
         print(f"Best agent cycles: {generation_max_cycles}")
         print("# -------------------------------")
-        if wave == 100:
+        if wave == 1000:
             print("# -------------------------------")
             print("Lil Guy is perfect now, go away")
             print("# -------------------------------")
