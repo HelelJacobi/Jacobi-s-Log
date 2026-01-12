@@ -104,4 +104,3 @@ def main(image_path):
 
 # Example usage
 # main('path_to_your_satellite_image.tif')
-main('C:/Users/jacob/Documents/GitHub/Jacob-s-Log/test.tif')
