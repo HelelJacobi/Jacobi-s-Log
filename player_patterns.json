@@ -1,0 +1,814 @@
+{
+  "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1": {
+    "e2e4": {
+      "count": 4,
+      "wins": 4,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2": {
+    "d2d4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    },
+    "b1c3": {
+      "count": 3,
+      "wins": 3,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/pp1ppp1p/8/2p3p1/3PP3/8/PPP2PPP/RNBQKBNR w KQkq - 0 3": {
+    "c1g5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/p2ppp1p/8/1pp3B1/3PP3/8/PPP2PPP/RN1QKBNR w KQkq - 0 4": {
+    "f1b5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/p2ppp2/8/1Bp3Bp/3PP3/8/PPP2PPP/RN1QK1NR w KQkq - 0 5": {
+    "c2c3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/3ppp2/8/pBp3Bp/3PP3/2P5/PP3PPP/RN1QK1NR w KQkq - 0 6": {
+    "g1e2": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/3pp3/8/pBp2pBp/3PP3/2P5/PP2NPPP/RN1QK2R w KQkq - 0 7": {
+    "d4c5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/3p4/8/pBP1ppBp/4P3/2P5/PP2NPPP/RN1QK2R w KQkq - 0 8": {
+    "g5d8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbBkbn1/3p4/7r/pBP1pp1p/4P3/2P5/PP2NPPP/RN1QK2R w KQq - 1 9": {
+    "e4f5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nbBkbn1/3p4/r6r/pBP1pP1p/8/2P5/PP2NPPP/RN1QK2R w KQ - 1 10": {
+    "b5a6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nbBkbn1/3p4/B6r/p1P1pP2/7p/2P5/PP2NPPP/RN1QK2R w KQ - 0 11": {
+    "d8a5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1kbn1/3p4/Br6/B1P1pP2/7p/2P5/PP2NPPP/RN1QK2R w KQ - 1 12": {
+    "a5b6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1kbn1/8/BB6/2PppP2/7p/2P5/PP2NPPP/RN1QK2R w KQ d6 0 13": {
+    "d1d5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1kbn1/8/BB6/2PQ1P2/4p2p/2P5/PP2NPPP/RN2K2R w KQ - 0 14": {
+    "e1g1": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1kbn1/8/BB6/2PQ1P2/7p/2P1p3/PP2NPPP/RN3RK1 w - - 0 15": {
+    "f2e3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k1n1/8/BB5b/2PQ1P2/7p/2P1P3/PP2N1PP/RN3RK1 w - - 1 16": {
+    "e3e4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k1n1/8/BB6/2PQ1P2/4P2p/2P1b3/PP2N1PP/RN3RK1 w - - 1 17": {
+    "g1h1": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k1n1/8/BB5b/2PQ1P2/4P2p/2P5/PP2N1PP/RN3R1K w - - 3 18": {
+    "b1a3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k1n1/8/BB6/2PQ1P2/4P2p/N1P5/PP2N1PP/R1b2R1K w - - 5 19": {
+    "a1c1": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n2k1n1/3b4/BB6/2PQ1P2/4P2p/N1P5/PP2N1PP/2R2R1K w - - 1 20": {
+    "a3c4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n2k1n1/8/BB6/2PQ1P2/b1N1P2p/2P5/PP2N1PP/2R2R1K w - - 3 21": {
+    "d5e6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n3kn1/8/BB2Q3/2P2P2/b1N1P2p/2P5/PP2N1PP/2R2R1K w - - 5 22": {
+    "c4d6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n3kn1/8/BB1NQ3/2P2P2/4P2p/2P5/PP2N1PP/2Rb1R1K w - - 7 23": {
+    "e6f7": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/p2ppppp/8/1pp5/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 0 3": {
+    "f1b5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/p2pppp1/8/1Bp4p/4P3/2N5/PPPP1PPP/R1BQK1NR w KQkq - 0 4": {
+    "g1f3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/p2ppp2/8/1Bp3pp/4P3/2N2N2/PPPP1PPP/R1BQK2R w KQkq - 0 5": {
+    "f3g5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/3ppp2/8/pBp3Np/4P3/2N5/PPPP1PPP/R1BQK2R w KQkq - 0 6": {
+    "d2d4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/3pp3/8/pBp2pNp/3PP3/2N5/PPP2PPP/R1BQK2R w KQkq - 0 7": {
+    "f2f3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/3p4/8/pBp1ppNp/3PP3/2N2P2/PPP3PP/R1BQK2R w KQkq - 0 8": {
+    "d4e5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/3p4/8/pB2PpNp/2p1P3/2N2P2/PPP3PP/R1BQK2R w KQkq - 0 9": {
+    "b5c4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkbnr/8/8/p2pPpNp/2B1P3/2N2P2/PPP3PP/R1BQK2R w KQkq d6 0 10": {
+    "c4d5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbq1bnr/4k3/8/p2BPpNp/4P3/2N2P2/PPP3PP/R1BQK2R w KQ - 1 11": {
+    "e1g1": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnb2bnr/4k3/1q6/p2BPpNp/4P3/2N2P2/PPP3PP/R1BQ1RK1 w - - 3 12": {
+    "c1e3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnb2bnr/4k3/8/p2BPpNp/3qP3/2N1BP2/PPP3PP/R2Q1RK1 w - - 5 13": {
+    "e3d4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnb2bnr/4k3/8/p2BP1Np/3BPp2/2N2P2/PPP3PP/R2Q1RK1 w - - 0 14": {
+    "e5e6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb2bnr/4k3/r3P3/p2B2Np/3BPp2/2N2P2/PPP3PP/R2Q1RK1 w - - 1 15": {
+    "d4h8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb3nB/4k1b1/r3P3/p2B2Np/4Pp2/2N2P2/PPP3PP/R2Q1RK1 w - - 1 16": {
+    "h8g7": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb3n1/4k1B1/r3P3/p2B2N1/4Pp1p/2N2P2/PPP3PP/R2Q1RK1 w - - 0 17": {
+    "d1d4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb3n1/4k1B1/r3P3/3B2N1/p2QPp1p/2N2P2/PPP3PP/R4RK1 w - - 0 18": {
+    "d4f6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k1n1/6B1/r3PQ2/3B2N1/p3Pp1p/2N2P2/PPP3PP/R4RK1 w - - 2 19": {
+    "f6f7": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nbk2n1/5QB1/r3P3/3B2N1/p3Pp1p/2N2P2/PPP3PP/R4RK1 w - - 4 20": {
+    "a1d1": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nbk2n1/5QB1/2r1P3/3B2N1/p3Pp1p/2N2P2/PPP3PP/3R1RK1 w - - 6 21": {
+    "d5c6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n1k2n1/3b1QB1/2B1P3/6N1/p3Pp1p/2N2P2/PPP3PP/3R1RK1 w - - 1 22": {
+    "d1d7": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nk3n1/3R1QB1/2B1P3/6N1/p3Pp1p/2N2P2/PPP3PP/5RK1 w - - 1 23": {
+    "f7e8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkb1r/pp1ppppp/7n/2p5/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 3": {
+    "d2d4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    },
+    "d2d3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkb1r/p2ppppp/7n/1pp5/3PP3/2N5/PPP2PPP/R1BQKBNR w KQkq - 0 4": {
+    "f1b5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkb1r/p2ppp1p/7n/1Bp3p1/3PP3/2N5/PPP2PPP/R1BQK1NR w KQkq - 0 5": {
+    "c1g5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkb1r/3ppp1p/7n/pBp3B1/3PP3/2N5/PPP2PPP/R2QK1NR w KQkq - 0 6": {
+    "d4c5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkb1r/3p1p1p/7n/pBP1p1B1/4P3/2N5/PPP2PPP/R2QK1NR w KQkq - 0 7": {
+    "g5d8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbBkb1r/3p3p/7n/pBP1pp2/4P3/2N5/PPP2PPP/R2QK1NR w KQkq - 0 8": {
+    "e4f5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nbBkb1r/3p3p/r6n/pBP1pP2/8/2N5/PPP2PPP/R2QK1NR w KQk - 1 9": {
+    "b5a6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nbBkb1r/7p/B6n/p1PppP2/8/2N5/PPP2PPP/R2QK1NR w KQk d6 0 10": {
+    "g1f3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nbBkbnr/7p/B7/p1PppP2/8/2N2N2/PPP2PPP/R2QK2R w KQk - 2 11": {
+    "d1d5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nbBkbnr/8/B7/p1PQpP1p/8/2N2N2/PPP2PPP/R3K2R w KQk - 0 12": {
+    "a6b5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n1Bkbnr/3b4/8/pBPQpP1p/8/2N2N2/PPP2PPP/R3K2R w KQk - 2 13": {
+    "b5d7": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n1k1bnr/3B4/8/p1PQpP1p/8/2N2N2/PPP2PPP/R3K2R w KQ - 0 14": {
+    "c3b5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n1k1bn1/3B4/7r/pNPQpP1p/8/5N2/PPP2PPP/R3K2R w KQ - 2 15": {
+    "f3e5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n1k1bn1/3B4/4r3/pNPQNP1p/8/8/PPP2PPP/R3K2R w KQ - 1 16": {
+    "f5e6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n3bn1/3Bk3/4P3/pNPQN2p/8/8/PPP2PPP/R3K2R w KQ - 1 17": {
+    "e5g6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n3bn1/3B4/4PkN1/pNPQ3p/8/8/PPP2PPP/R3K2R w KQ - 3 18": {
+    "g6f8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n3Nn1/3Bk3/4P3/pNPQ3p/8/8/PPP2PPP/R3K2R w KQ - 1 19": {
+    "f8g6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n4n1/3B4/4PkN1/pNPQ3p/8/8/PPP2PPP/R3K2R w KQ - 3 20": {
+    "d5h5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n4n1/3B4/4PkN1/1NP4Q/p7/8/PPP2PPP/R3K2R w KQ - 0 21": {
+    "e1g1": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n4n1/3B2k1/4P1N1/1NP4Q/p7/8/PPP2PPP/R4RK1 w - - 2 22": {
+    "f1e1": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n6/3B2k1/4P1Nn/1NP4Q/p7/8/PPP2PPP/R3R1K1 w - - 4 23": {
+    "e1e3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n4n1/3B2k1/4P1N1/1NP4Q/p7/4R3/PPP2PPP/R5K1 w - - 6 24": {
+    "e3g3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n4n1/3B4/4PkN1/1NP4Q/p7/6R1/PPP2PPP/R5K1 w - - 8 25": {
+    "g3f3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n4n1/3B2k1/4P1N1/1NP4Q/p7/5R2/PPP2PPP/R5K1 w - - 10 26": {
+    "g6e5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n6/3B2k1/4P2n/1NP1N2Q/p7/5R2/PPP2PPP/R5K1 w - - 12 27": {
+    "h5g6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n5k/3B4/4P1Qn/1NP1N3/p7/5R2/PPP2PPP/R5K1 w - - 14 28": {
+    "f3f8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n3Rnk/3B4/4P1Q1/1NP1N3/p7/8/PPP2PPP/R5K1 w - - 16 29": {
+    "e5f7": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkb1r/pp1ppp1p/7n/2p3p1/4P3/2NP4/PPP2PPP/R1BQKBNR w KQkq - 0 4": {
+    "c1g5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkb1r/p2ppp1p/7n/1pp3B1/4P3/2NP4/PPP2PPP/R2QKBNR w KQkq - 0 5": {
+    "g5h6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkb1r/3ppp1p/7B/ppp5/4P3/2NP4/PPP2PPP/R2QKBNR w KQkq - 0 6": {
+    "h6f8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqkB1r/3ppp2/8/ppp4p/4P3/2NP4/PPP2PPP/R2QKBNR w KQkq - 0 7": {
+    "f8h6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqk2r/4pp2/7B/pppp3p/4P3/2NP4/PPP2PPP/R2QKBNR w KQkq - 0 8": {
+    "h6g5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqk2r/4p3/5p2/pppp2Bp/4P3/2NP4/PPP2PPP/R2QKBNR w KQkq - 0 9": {
+    "g5f6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "rnbqk2r/8/5B2/ppppp2p/4P3/2NP4/PPP2PPP/R2QKBNR w KQkq - 0 10": {
+    "f6d8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nbBk2r/8/r7/ppppp2p/4P3/2NP4/PPP2PPP/R2QKBNR w KQk - 1 11": {
+    "d8f6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k2r/8/r4B2/1pppp2p/p3P3/2NP4/PPP2PPP/R2QKBNR w KQk - 0 12": {
+    "f6h8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k2B/8/r7/2ppp2p/pp2P3/2NP4/PPP2PPP/R2QKBNR w KQ - 0 13": {
+    "h8e5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k3/8/5r2/2ppB2p/pp2P3/2NP4/PPP2PPP/R2QKBNR w KQ - 1 14": {
+    "e5f6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k3/8/5B2/3p3p/ppp1P3/2NP4/PPP2PPP/R2QKBNR w KQ - 0 15": {
+    "f6e5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k3/8/8/4B2p/ppppP3/2NP4/PPP2PPP/R2QKBNR w KQ - 0 16": {
+    "e5d4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1nb1k3/8/8/7p/p1pBP3/1pNP4/PPP2PPP/R2QKBNR w KQ - 0 17": {
+    "d4e5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1n2k3/8/8/4B2p/p1p1P3/1pNP3b/PPP2PPP/R2QKBNR w KQ - 2 18": {
+    "e5b8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "1B6/4k3/8/7p/p1p1P3/1pNP3b/PPP2PPP/R2QKBNR w KQ - 1 19": {
+    "b8g3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "8/4k3/8/8/p1p1P2p/1pNP2Bb/PPP2PPP/R2QKBNR w KQ - 0 20": {
+    "g3h4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "8/8/3k4/8/p1p1P2B/1pNP3b/PPP2PPP/R2QKBNR w KQ - 1 21": {
+    "g1h3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "8/3k4/8/8/p1p1P2B/1pNP3N/PPP2PPP/R2QKB1R w KQ - 1 22": {
+    "h4g3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "8/4k3/8/8/p1p1P3/1pNP2BN/PPP2PPP/R2QKB1R w KQ - 3 23": {
+    "g3e5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "8/3k4/8/4B3/p1p1P3/1pNP3N/PPP2PPP/R2QKB1R w KQ - 5 24": {
+    "c3a4": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "8/3k4/8/4B3/N3P3/1ppP3N/PPP2PPP/R2QKB1R w KQ - 0 25": {
+    "e5c3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "8/4k3/8/8/N3P3/1pBP3N/PPP2PPP/R2QKB1R w KQ - 1 26": {
+    "a2b3": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "8/3k4/8/8/N3P3/1PBP3N/1PP2PPP/R2QKB1R w KQ - 1 27": {
+    "a4c5": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "8/4k3/8/2N5/4P3/1PBP3N/1PP2PPP/R2QKB1R w KQ - 3 28": {
+    "a1a6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "4k3/8/R7/2N5/4P3/1PBP3N/1PP2PPP/3QKB1R w K - 5 29": {
+    "d1a1": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "8/4k3/R7/2N5/4P3/1PBP3N/1PP2PPP/Q3KB1R w K - 7 30": {
+    "a6b6": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "4k3/8/1R6/2N5/4P3/1PBP3N/1PP2PPP/Q3KB1R w K - 9 31": {
+    "a1a7": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  },
+  "3k4/Q7/1R6/2N5/4P3/1PBP3N/1PP2PPP/4KB1R w K - 11 32": {
+    "b6b8": {
+      "count": 1,
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    }
+  }
+}
