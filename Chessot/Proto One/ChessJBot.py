@@ -254,52 +254,186 @@ class LearningChessBot:
         weakness_bonus = (0.5 - win_rate) * 200
         return weakness_bonus
 
+    def _is_endgame(self, board: chess.Board) -> bool:
+        """Check if we're in an endgame (fewer than 8 pieces on board)"""
+        total_pieces = len(board.pieces(chess.PAWN, chess.WHITE)) + len(board.pieces(chess.PAWN, chess.BLACK))
+        total_pieces += len(board.pieces(chess.KNIGHT, chess.WHITE)) + len(board.pieces(chess.KNIGHT, chess.BLACK))
+        total_pieces += len(board.pieces(chess.BISHOP, chess.WHITE)) + len(board.pieces(chess.BISHOP, chess.BLACK))
+        total_pieces += len(board.pieces(chess.ROOK, chess.WHITE)) + len(board.pieces(chess.ROOK, chess.BLACK))
+        total_pieces += len(board.pieces(chess.QUEEN, chess.WHITE)) + len(board.pieces(chess.QUEEN, chess.BLACK))
+        return total_pieces < 8
+
+    def _evaluate_endgame(self, board: chess.Board) -> float:
+        """Evaluate endgame with strategic precision"""
+        # Endgame: drive opponent king to edge, centralize own king
+        white_king = board.king(chess.WHITE)
+        black_king = board.king(chess.BLACK)
+        
+        # Material is critical in endgame
+        material = self._evaluate_material(board)
+        
+        # If winning material, drive enemy king to edge
+        if material > 200:  # Winning position
+            # Distance from center favors pushing enemy king away
+            black_king_edge_distance = min(
+                chess.square_file(black_king),
+                7 - chess.square_file(black_king),
+                chess.square_rank(black_king),
+                7 - chess.square_rank(black_king)
+            )
+            # Centralize own king
+            white_king_centralization = 7 - min(
+                abs(3 - chess.square_file(white_king)),
+                abs(3 - chess.square_rank(white_king))
+            )
+            endgame_score = (black_king_edge_distance * 50) + (white_king_centralization * 30)
+        elif material < -200:  # Losing position
+            # Opposite strategy: keep opponent king in center, centralize own king
+            white_king_edge_distance = min(
+                chess.square_file(white_king),
+                7 - chess.square_file(white_king),
+                chess.square_rank(white_king),
+                7 - chess.square_rank(white_king)
+            )
+            black_king_centralization = 7 - min(
+                abs(3 - chess.square_file(black_king)),
+                abs(3 - chess.square_rank(black_king))
+            )
+            endgame_score = (white_king_edge_distance * 50) + (black_king_centralization * 30)
+        else:
+            endgame_score = 0
+        
+        return material + endgame_score + self._evaluate_position(board) + self._evaluate_king_safety(board)
+
+    def _detect_hanging_pieces(self, board, color):
+        hanging = {}
+
+        for piece_type in chess.PIECE_TYPES:
+            if piece_type == chess.KING:
+                continue
+
+            for square in board.pieces(piece_type, color):
+                attackers = len(board.attackers(not color, square))
+                defenders = len(board.attackers(color, square))
+
+                if attackers > 0 and defenders == 0:
+                    hanging[square] = self.piece_values[piece_type]
+
+        return hanging
+
+    def _evaluate_tactics(self, board):
+        score = 0
+
+        # Black hanging pieces = good for White
+        black_hanging = self._detect_hanging_pieces(board, chess.BLACK)
+        for _, value in black_hanging.items():
+            score += value * 0.7
+
+        # White hanging pieces = bad for White
+        white_hanging = self._detect_hanging_pieces(board, chess.WHITE)
+        for _, value in white_hanging.items():
+            score -= value * 0.7
+
+        return score
+
+    def _detect_castled_king(self, board: chess.Board, color: int) -> Optional[str]:
+        """Detect if king has castled and where (kingside/queenside)"""
+        king = board.king(color)
+        
+        if color == chess.WHITE:
+            if king == chess.G1:
+                return "kingside"  # Castled kingside (g-file)
+            elif king == chess.C1:
+                return "queenside"  # Castled queenside (c-file)
+        else:
+            if king == chess.G8:
+                return "kingside"
+            elif king == chess.C8:
+                return "queenside"
+        
+        return None
+
+    def _evaluate_pawn_strategy(self, board: chess.Board) -> float:
+        """Evaluate pawn attacks near opponent's castled king"""
+        score = 0
+        opponent_color = not board.turn
+        opponent_castled = self._detect_castled_king(board, opponent_color)
+        
+        if opponent_castled:
+            our_pawns = board.pieces(chess.PAWN, board.turn)
+            
+            if opponent_castled == "kingside":
+                # Attack f, g, h files near king
+                attack_files = [5, 6, 7]  # f, g, h files
+                for pawn in our_pawns:
+                    if chess.square_file(pawn) in attack_files:
+                        rank = chess.square_rank(pawn)
+                        # Reward advanced pawns attacking kingside
+                        if board.turn == chess.WHITE and rank >= 4:
+                            score += (rank - 2) * 10
+                        elif board.turn == chess.BLACK and rank <= 3:
+                            score += (5 - rank) * 10
+            
+            elif opponent_castled == "queenside":
+                # Attack a, b, c files near king
+                attack_files = [0, 1, 2]  # a, b, c files
+                for pawn in our_pawns:
+                    if chess.square_file(pawn) in attack_files:
+                        rank = chess.square_rank(pawn)
+                        if board.turn == chess.WHITE and rank >= 4:
+                            score += (rank - 2) * 10
+                        elif board.turn == chess.BLACK and rank <= 3:
+                            score += (5 - rank) * 10
+        
+        return score
+
     def get_move(self, board: chess.Board) -> chess.Move:
         """Get the best move for the current position"""
-        # Check opening book first
+        
         if board.fen() in self.opening_book:
             book_moves = self.opening_book[board.fen()]
-            # Filter to only legal moves
             legal_book_moves = [m for m in book_moves if m in board.legal_moves]
             if legal_book_moves:
-                return random.choice(legal_book_moves)  # Random choice for variety
-        
-        # Fall back to minimax search
+                return random.choice(legal_book_moves)
+
         self.transposition_table.clear()
-        _, move = self._minimax(board, self.max_depth, float('-inf'), float('inf'), True)
+
+        is_maximizing = (board.turn == chess.WHITE)
+
+        _, move = self._minimax(
+            board,
+            self.max_depth,
+            float('-inf'),
+            float('inf'),
+            is_maximizing
+        )
+
         return move if move else list(board.legal_moves)[0]
 
-    def evaluate_board(self, board: chess.Board) -> float:
-        """Comprehensive board evaluation"""
-        # Terminal conditions
+    def evaluate_board(self, board):
         if board.is_checkmate():
-            return float('-inf') if board.turn else float('inf')
-        
-        if board.is_stalemate() or board.is_insufficient_material() or board.is_repetition():
+            return -999999 if board.turn == chess.WHITE else 999999
+
+        if board.is_stalemate() or board.is_insufficient_material():
             return 0
-        
-        # Material evaluation
-        material_score = self._evaluate_material(board)
-        
-        # Positional evaluation
-        position_score = self._evaluate_position(board)
-        
-        # Mobility evaluation
-        mobility_score = self._evaluate_mobility(board)
-        
-        # King safety evaluation
-        king_safety_score = self._evaluate_king_safety(board)
-        
-        # Check status bonus
-        check_score = 50 if board.is_check() else 0
-        
-        # Player weakness/strength analysis - adjust score based on how well opponent performs in this position
-        # Positive bonus if opponent typically loses here, negative if they typically win
-        weakness_bonus = self._get_player_weakness_bonus(board.fen())
-        
-        total = material_score + position_score + mobility_score + king_safety_score + (check_score if board.turn else -check_score) + weakness_bonus
-        
-        return total
+
+        # repetition = mild penalty
+        repetition_penalty = 0
+        if board.is_repetition(2):
+            repetition_penalty = -40 if board.turn == chess.WHITE else 40
+
+        if board.can_claim_threefold_repetition():
+            repetition_penalty = -80 if board.turn == chess.WHITE else 80
+
+        total = (
+            self._evaluate_material(board)
+            + self._evaluate_position(board)
+            + self._evaluate_mobility(board)
+            + self._evaluate_king_safety(board)
+            + self._evaluate_tactics(board)
+        )
+
+        return total + repetition_penalty
 
     def _evaluate_material(self, board: chess.Board) -> float:
         """Evaluate material balance"""
@@ -355,36 +489,66 @@ class LearningChessBot:
 
     def _evaluate_mobility(self, board: chess.Board) -> float:
         """Evaluate piece mobility"""
-        white_moves = board.legal_moves.count()
-        
-        board.turn = not board.turn
-        black_moves = board.legal_moves.count()
-        board.turn = not board.turn
+        copy = board.copy()
+        copy.turn = chess.WHITE
+        white_moves = copy.legal_moves.count()
+
+        copy.turn = chess.BLACK
+        black_moves = copy.legal_moves.count()
         
         return (white_moves - black_moves) * 2
 
-    def _evaluate_king_safety(self, board: chess.Board) -> float:
-        """Evaluate king safety"""
+    def _evaluate_king_safety(self, board):
         score = 0
-        
-        # White king safety
-        white_king_square = board.king(chess.WHITE)
-        white_king_attackers = len(board.attackers(chess.BLACK, white_king_square))
-        
-        # Black king safety
-        black_king_square = board.king(chess.BLACK)
-        black_king_attackers = len(board.attackers(chess.WHITE, black_king_square))
-        
-        score -= white_king_attackers * 30
-        score += black_king_attackers * 30
-        
+
+        white_sq = board.king(chess.WHITE)
+        black_sq = board.king(chess.BLACK)
+
+        white_file = chess.square_file(white_sq)
+        white_rank = chess.square_rank(white_sq)
+
+        black_file = chess.square_file(black_sq)
+        black_rank = chess.square_rank(black_sq)
+
+        white_center = min(
+            abs(3 - white_file),
+            abs(4 - white_file),
+            abs(3 - white_rank),
+            abs(4 - white_rank)
+        )
+
+        black_center = min(
+            abs(3 - black_file),
+            abs(4 - black_file),
+            abs(3 - black_rank),
+            abs(4 - black_rank)
+        )
+
+        if not self._is_endgame(board):
+            white_safe = white_rank == 0 and white_file in [1, 6]
+            black_safe = black_rank == 7 and black_file in [1, 6]
+
+            score -= white_center * 15
+            score += black_center * 15
+
+            if white_safe:
+                score += 40
+            if black_safe:
+                score -= 40
+
+        white_attackers = len(board.attackers(chess.BLACK, white_sq))
+        black_attackers = len(board.attackers(chess.WHITE, black_sq))
+
+        score -= white_attackers * 40
+        score += black_attackers * 40
+
         return score
 
     def _minimax(self, board: chess.Board, depth: int, alpha: float, beta: float, 
                  is_maximizing: bool) -> Tuple[float, Optional[chess.Move]]:
         """Minimax with alpha-beta pruning"""
         
-        fen = board.fen()
+        fen = board.board_fen()
         key = (fen, depth)
         
         # Check transposition table
@@ -392,29 +556,34 @@ class LearningChessBot:
             return self.transposition_table[key]
         
         # Check learned positions for guidance
+        learn_bonus = 0
         if fen in self.learned_positions:
-            learned_data = self.learned_positions[fen]
-            total_games = learned_data["wins"] + learned_data["losses"] + learned_data["draws"]
-            if total_games > 0:
-                win_rate = learned_data["wins"] / total_games
-                return win_rate * 100 - 50, None  # Convert to evaluation
+            data = self.learned_positions[fen]
+            total = data["wins"] + data["losses"] + data["draws"]
+
+            if total >= 5:
+                learn_bonus = ((data["wins"] - data["losses"]) / total) * 20
+        
         
         # Terminal conditions
         if depth == 0 or board.is_game_over():
-            eval_score = self.evaluate_board(board)
-            self.transposition_table[key] = (eval_score, None)
-            return eval_score, None
+            return self.evaluate_board(board) + learn_bonus, None
         
         legal_moves = list(board.legal_moves)
         
-        # Sort moves (captures first, then checks)
+        # Advanced move ordering: prioritize good moves, penalize bad ones
         def move_order(move):
+            score = 0
+
             if board.is_capture(move):
-                return 0
-            elif board.gives_check(move):
-                return 1
-            else:
-                return 2
+                captured = board.piece_at(move.to_square)
+                if captured:
+                    score -= self.piece_values[captured.piece_type]
+
+            if board.gives_check(move):
+                score -= 50
+
+            return score
         
         legal_moves.sort(key=move_order)
         

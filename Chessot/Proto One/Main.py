@@ -5,7 +5,7 @@ Supports: Human vs Bot and Bot vs Bot modes
 Full chess rules: stalemate, checkmate, en passant, pawn promotion, etc.
 """
 import chess
-from ChessBot import LearningChessBot
+from ChessJBot import LearningChessBot
 
 class ChessGame:
     def __init__(self):

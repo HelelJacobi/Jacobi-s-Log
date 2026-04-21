@@ -58,6 +58,13 @@ class ChessGUI:
         self.status_message = "Welcome! Start a new game or continue playing."
         self.show_eval_bar = True
         
+        # Bot vs Bot mode tracking
+        self.bot_vs_bot_running = False
+        self.white_wins = 0
+        self.black_wins = 0
+        self.draws = 0
+        self.session_games = 0
+        
         # UI Setup
         self.setup_ui()
         self.draw_board()
@@ -121,6 +128,10 @@ class ChessGUI:
         self.reset_btn = self._create_button(button_frame, "Reset", self.reset_board, 2)
         self.reset_btn.pack(side=tk.LEFT, padx=3)
         
+        # Bot vs Bot control button
+        self.bot_vs_bot_btn = self._create_button(button_frame, "Start Sessions", self.toggle_bot_vs_bot_mode, 3)
+        self.bot_vs_bot_btn.pack(side=tk.LEFT, padx=3)
+        
         # Main game area
         game_frame = tk.Frame(self.root, bg=COLORS["bg_dark"])
         game_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True, padx=10, pady=10)
@@ -143,8 +154,9 @@ class ChessGUI:
         eval_frame = tk.Frame(right_frame, bg=COLORS["bg_light"])
         eval_frame.pack(fill=tk.X, pady=(0, 10))
         
-        tk.Label(eval_frame, text="EVALUATION", font=("Segoe UI", 9, "bold"),
-                bg=COLORS["bg_light"], fg=COLORS["accent_cyan"]).pack(anchor=tk.W)
+        self.eval_label = tk.Label(eval_frame, text="EVALUATION", font=("Segoe UI", 9, "bold"),
+                bg=COLORS["bg_light"], fg=COLORS["accent_cyan"])
+        self.eval_label.pack(anchor=tk.W)
         
         self.eval_canvas = tk.Canvas(eval_frame, width=35, height=300, bg=COLORS["bg_lighter"],
                                      highlightthickness=1, highlightbackground=COLORS["accent_blue"])
@@ -214,33 +226,65 @@ class ChessGUI:
         self.eval_toggle_btn.config(text=f"Eval: {status}")
         self.draw_board()
     
+    def toggle_bot_vs_bot_mode(self):
+        """Toggle bot vs bot continuous play"""
+        if not self.bot_vs_bot:
+            self.update_status("Switch to Bot vs Bot mode first!")
+            return
+        
+        self.bot_vs_bot_running = not self.bot_vs_bot_running
+        if self.bot_vs_bot_running:
+            self.bot_vs_bot_btn.config(text="Stop Sessions")
+            self.reset_bot_vs_bot_stats()
+            self.reset_board()
+            self.update_status("Bot vs Bot continuous play started!")
+            self.next_bot_game()
+        else:
+            self.bot_vs_bot_btn.config(text="Start Sessions")
+            self.update_status(f"Bot vs Bot stopped - W:{self.white_wins} B:{self.black_wins} D:{self.draws}")
+    
+    def reset_bot_vs_bot_stats(self):
+        """Reset bot vs bot statistics"""
+        self.white_wins = 0
+        self.black_wins = 0
+        self.draws = 0
+        self.session_games = 0
+    
+    def next_bot_game(self):
+        """Start the next bot vs bot game"""
+        if not self.bot_vs_bot_running:
+            return
+        
+        self.reset_board()
+        self.check_game_state()
+    
     def on_mode_change(self):
         """Handle game mode change"""
         mode = self.mode_var.get()
         
         if mode == "Player (White)":
             self.bot_vs_bot = False
+            self.bot_vs_bot_running = False
             self.player_color = chess.WHITE
             self.update_status("Mode: You play as White")
         elif mode == "Player (Black)":
             self.bot_vs_bot = False
+            self.bot_vs_bot_running = False
             self.player_color = chess.BLACK
             self.update_status("Mode: You play as Black")
         elif mode == "Bot vs Bot":
             self.bot_vs_bot = True
-            self.update_status("Mode: Watching bots play")
+            self.bot_vs_bot_running = False
+            self.update_status("Mode: Bot vs Bot - Click 'Start Sessions' to begin")
         
         self.reset_board()
 
     def new_game(self):
         """Start a new game"""
-        if self.bot_vs_bot:
-            # Show bot2 difficulty control
-            self.show_bot2_difficulty_dialog()
         self.reset_board()
     
     def show_bot2_difficulty_dialog(self):
-        """Show integrated dialog for bot2 difficulty"""
+        """Show integrated dialog for bot2 difficulty (unused in continuous mode)"""
         dialog = tk.Toplevel(self.root)
         dialog.title("Bot 2 Difficulty")
         dialog.geometry("300x120")
@@ -350,42 +394,91 @@ class ChessGUI:
         self.update_move_list()
 
     def draw_evaluation_bar(self):
-        """Draw the evaluation bar"""
+        """Draw the evaluation bar or win graph depending on mode"""
         self.eval_canvas.delete("all")
         
-        if not self.show_eval_bar:
+        # In bot vs bot mode, show win statistics graph
+        if self.bot_vs_bot:
+            self.eval_label.config(text="SESSION STATS")
+            self.draw_win_graph()
+        else:
+            self.eval_label.config(text="EVALUATION")
+            # Standard evaluation bar
+            if not self.show_eval_bar:
+                return
+            
+            try:
+                score = self.bot.evaluate_board(self.board)
+                # Normalize score to -1 to 1 range
+                normalized = max(min(score / 500, 1), -1)
+                
+                # Draw background
+                self.eval_canvas.create_rectangle(0, 0, 35, 300, fill=COLORS["bg_darker"], outline=COLORS["accent_blue"])
+                
+                # Calculate heights
+                center = 150
+                white_height = int((1 - normalized) * center)
+                black_height = int((1 + normalized) * center)
+                
+                # Draw eval bar
+                if white_height > 0:
+                    self.eval_canvas.create_rectangle(0, 0, 35, white_height, 
+                                                     fill=COLORS["square_light"], outline="")
+                if black_height > 0:
+                    self.eval_canvas.create_rectangle(0, 300 - black_height, 35, 300, 
+                                                     fill=COLORS["square_dark"], outline="")
+                
+                # Draw center line
+                self.eval_canvas.create_line(0, center, 35, center, fill=COLORS["accent_cyan"], width=2)
+                
+                # Draw score text
+                score_text = f"{score:.0f}"
+                self.eval_canvas.create_text(17, 10, text=score_text, fill=COLORS["accent_cyan"], 
+                                            font=("Arial", 9, "bold"))
+            except:
+                self.eval_canvas.create_rectangle(0, 0, 35, 300, fill=COLORS["bg_darker"], outline=COLORS["accent_blue"])
+
+    def draw_win_graph(self):
+        """Draw win statistics graph for bot vs bot mode"""
+        self.eval_canvas.create_rectangle(0, 0, 35, 300, fill=COLORS["bg_darker"], outline=COLORS["accent_blue"])
+        
+        total = self.white_wins + self.black_wins + self.draws
+        if total == 0:
             return
         
-        try:
-            score = self.bot.evaluate_board(self.board)
-            # Normalize score to -1 to 1 range
-            normalized = max(min(score / 500, 1), -1)
-            
-            # Draw background
-            self.eval_canvas.create_rectangle(0, 0, 35, 300, fill=COLORS["bg_darker"], outline=COLORS["accent_blue"])
-            
-            # Calculate heights
-            center = 150
-            white_height = int((1 - normalized) * center)
-            black_height = int((1 + normalized) * center)
-            
-            # Draw eval bar
-            if white_height > 0:
-                self.eval_canvas.create_rectangle(0, 0, 35, white_height, 
-                                                 fill=COLORS["square_light"], outline="")
-            if black_height > 0:
-                self.eval_canvas.create_rectangle(0, 300 - black_height, 35, 300, 
-                                                 fill=COLORS["square_dark"], outline="")
-            
-            # Draw center line
-            self.eval_canvas.create_line(0, center, 35, center, fill=COLORS["accent_cyan"], width=2)
-            
-            # Draw score text
-            score_text = f"{score:.0f}"
-            self.eval_canvas.create_text(17, 10, text=score_text, fill=COLORS["accent_cyan"], 
-                                        font=("Arial", 9, "bold"))
-        except:
-            self.eval_canvas.create_rectangle(0, 0, 35, 300, fill=COLORS["bg_darker"], outline=COLORS["accent_blue"])
+        # Draw proportional bars for wins
+        white_ratio = self.white_wins / total if total > 0 else 0
+        black_ratio = self.black_wins / total if total > 0 else 0
+        draw_ratio = self.draws / total if total > 0 else 0
+        
+        white_height = int(white_ratio * 300)
+        black_height = int(black_ratio * 300)
+        draw_height = int(draw_ratio * 300)
+        
+        # Draw stacked bars
+        y_offset = 0
+        if white_height > 0:
+            self.eval_canvas.create_rectangle(0, y_offset, 35, y_offset + white_height, 
+                                             fill=COLORS["square_light"], outline="")
+            self.eval_canvas.create_text(17, y_offset + white_height // 2, 
+                                        text=f"{self.white_wins}", fill=COLORS["accent_cyan"], 
+                                        font=("Arial", 8, "bold"))
+            y_offset += white_height
+        
+        if draw_height > 0:
+            self.eval_canvas.create_rectangle(0, y_offset, 35, y_offset + draw_height, 
+                                             fill=COLORS["accent_cyan"], outline="")
+            self.eval_canvas.create_text(17, y_offset + draw_height // 2, 
+                                        text=f"{self.draws}", fill=COLORS["bg_darker"], 
+                                        font=("Arial", 8, "bold"))
+            y_offset += draw_height
+        
+        if black_height > 0:
+            self.eval_canvas.create_rectangle(0, y_offset, 35, y_offset + black_height, 
+                                             fill=COLORS["square_dark"], outline="")
+            self.eval_canvas.create_text(17, y_offset + black_height // 2, 
+                                        text=f"{self.black_wins}", fill=COLORS["accent_cyan"], 
+                                        font=("Arial", 8, "bold"))
 
     def update_move_list(self):
         """Update the displayed move list"""
@@ -588,6 +681,21 @@ class ChessGUI:
             
             # Learn from game
             self.bot.learn_from_game(self.game_moves, result)
+            
+            # Track wins in bot vs bot mode
+            if self.bot_vs_bot:
+                if result == "1-0":
+                    self.white_wins += 1
+                elif result == "0-1":
+                    self.black_wins += 1
+                else:
+                    self.draws += 1
+                self.session_games += 1
+                
+                # Continue to next game if running
+                if self.bot_vs_bot_running:
+                    self.root.after(1000, self.next_bot_game)
+                    return
             
             # Determine end message
             if outcome:

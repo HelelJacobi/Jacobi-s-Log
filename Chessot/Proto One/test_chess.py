@@ -4,7 +4,7 @@ Quick test of chess engine functionality
 Tests: Stalemate, Checkmate, En Passant, Pawn Promotion, Check, etc.
 """
 import chess
-from ChessBot import LearningChessBot
+from ChessJBot import LearningChessBot
 
 def test_basic_functionality():
     """Test basic game functionality"""
